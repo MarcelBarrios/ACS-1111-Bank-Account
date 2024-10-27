@@ -19,7 +19,7 @@ class BankAccount:
         # add amount to balance
         self.balance += amount
         # say amount deposited and new balance
-        print(f"Amount deposited: ${amount} new balance: ${self.balance}")
+        print(f"Amount deposited: ${amount:,.2f} new balance: ${self.balance:,.2f}")
 
     # withdraw money from the account
     def withdraw(self, amount):
@@ -29,15 +29,15 @@ class BankAccount:
         if amount > self.balance:
             self.balance -= 10
             # say new balance
-            print(f"New balance: ${self.balance}")
+            print(f"New balance: ${self.balance:,.2f}")
             return
         # say amount withdrawn and new balance
-        print(f"Amount withdrawn: ${amount} new balance: ${self.balance}")
+        print(f"Amount withdrawn: ${amount:,.2f} new balance: ${self.balance:,.2f}")
 
     # get balance
     def get_balance(self):
         # say balance
-        print(f"Hello {self.full_name}, your balance is ${self.balance}.")
+        print(f"Hello {self.full_name}, your balance is ${self.balance:,.2f}")
         # give balance
         return self.balance
 
@@ -52,7 +52,7 @@ class BankAccount:
         routing_number = 12341234
         account_number_sensitized = "*" * 4 + str(self.account_number)[3:]
         print(f"""{self.full_name}\nAccount No: {account_number_sensitized}
-Routing No: {routing_number}\nBalance: ${self.balance}""")
+Routing No: {routing_number}\nBalance: ${self.balance:,.2f}""")
 
 # create first example acconout
 marhia_account = BankAccount("Marhia Johns", 0, 1000)
