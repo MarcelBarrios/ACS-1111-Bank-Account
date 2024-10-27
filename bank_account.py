@@ -62,6 +62,71 @@ class BankAccount:
         account_number_sensitized = "*" * 4 + str(self.account_number)[4:]
         print(f"""{self.full_name}\nAccount No: {account_number_sensitized}
 Routing No: {routing_number}\nBalance: ${self.balance:,.2f}""")
+        
+# create blueprint to create a bank
+class Bank:
+    # create a empty group for future bank accounts
+    def __init__(self):
+        self.bank_accounts = []
+
+    # add bank account
+    def create_account(self, full_name, account_number, balance, type):
+        # add bank account to the the bank group
+        self.bank_accounts.append(BankAccount(full_name, account_number, balance, type))
+
+    # deposit to account
+    def deposit(self, amount, account_number):
+        # for every account in group of accounts
+        for account in self.bank_accounts:
+            # if account number match
+            if account.account_number == account_number:
+                # add amount to account
+                account.balance += amount
+            # else say account does not exist
+            else:
+                print("Sorry, that account does not exist.")
+
+    # withdraw from account
+    def withdraw(self, amount, account_number):
+        # for each account in group of accounts
+        for account in self.bank_accounts:
+            # if account numbers match
+            if account.account_number == account_number:
+                # reduce balance of the account by amount
+                account.balance -= amount
+
+    # transfer money from an account to another account
+    def transfer(self, amount, account_from, account_to):
+        # for every account in group of accounts
+        for account1 in self.bank_accounts:
+            # if account numbers match
+            if account1.account_number == account_from:
+                # if balance of account is bigger than amount
+                if account1.balance >= amount:
+                    # for each account in group of accounts
+                    for account2 in self.bank_accounts:
+                        # if account number to deposit to match account number
+                        if account2.account_number == account_to:
+                            # reduce balance of the account deposit from by amount
+                            account1.balance -= amount
+                            # add amount to balance of the account to deposit
+                            account2.balance += amount
+                # else say insufficient funds
+                else:
+                    "Insufficient funds"
+
+    # say statement of desired account
+    def statement(self, account_number):
+        # for each account in group of accounts
+        for account in self.bank_accounts:
+            # if account number matches
+            if account.account_number == account_number:
+                # say statement of desired account
+                account.print_statement()
+            # else if account doesn't exist
+            else:
+                # say account does not exist
+                print("Account does not exist.")
 
 # create first example acconout
 marhia_account = BankAccount("Marhia Johns", 0, 1000, "savings")
