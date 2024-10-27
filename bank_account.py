@@ -12,9 +12,12 @@ class BankAccount:
         # define the unique account number of the owner
         self.account_number = account_number if account_number else ''.join(random.choices(string.digits, k=8))
         # define the balance of money in the account, it should start with 0
-        self.balance = balance
+        self.balance = balance if balance else 0
         # type of account
         self.type = type
+        # routing number
+        self.routing_number = 12341234
+
 
         # if type is equal to savings then add interest, else do nothing
         if self.type == "savings":
@@ -58,10 +61,9 @@ class BankAccount:
     # print statement
     def print_statement(self):
         # say name, acount number sensitized, routing number, balance in currency format
-        routing_number = 12341234
         account_number_sensitized = "*" * 4 + str(self.account_number)[4:]
         print(f"""{self.full_name}\nAccount No: {account_number_sensitized}
-Routing No: {routing_number}\nBalance: ${self.balance:,.2f}""")
+Routing No: {self.routing_number}\nBalance: ${self.balance:,.2f}""")
         
 # create blueprint to create a bank
 class Bank:
