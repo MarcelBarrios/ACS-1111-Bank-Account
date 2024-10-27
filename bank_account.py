@@ -1,10 +1,17 @@
 # import code to be able to create a random account number
+import uuid
 
 # Create blueprint to create a new bank account
-    # Create all of these below
+class BankAccount:
+
+    # Create all of the following below
+    def __init__(self, full_name, account_number, balance):
         # define the name of the owner of the accounr
+        self.full_name = full_name
         # define the unique account number of the owner
+        self.account_number = account_number
         # define the balance of money in the account, it should start with 0
+        self.balance = balance
 
     # add money to the account
         # add amount to balance
